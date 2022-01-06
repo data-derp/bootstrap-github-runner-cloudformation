@@ -18,6 +18,7 @@ This directory holds a single Cloudformation template to set up the following
 ```bash
 ./aws-deps -p your-project-name -m your-team-name -u your-github-username
 ```
+:bulb: the `your-project-name` and `your-team-name` must be globally unique as an AWS S3 bucket is created (this resource is globally unique)
 
 4. When prompted, enter your Personal Access Token (created in step 1)
 ```bash
