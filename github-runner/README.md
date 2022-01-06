@@ -1,4 +1,4 @@
-# Bootstrap
+# Github Runner Bootstrap
 This directory holds a single Cloudformation template to set up the following
 * A Single VPC, NAT Gateway, IG, Private/Public Subnet, VPC Endpoints to ensure private networking
 * GithubRunner attached to your specified Github repository 
