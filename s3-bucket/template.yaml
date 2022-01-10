@@ -1,0 +1,32 @@
+Description: Creates a private, encrypted, non-versioned bucket called s3://${ProjectName}-${ModuleName}
+
+Parameters:
+  ProjectName:
+    Type: String
+    Description: Name of the project these resources belongs to
+    Default: data-derp
+  ModuleName:
+    Type: String
+    Description: Name of the module these resources belongs to
+    Default: base
+
+Resources:
+  Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: "Private"
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: "aws:kms"
+      BucketName: !Sub "${ProjectName}-${ModuleName}"
+      Tags:
+        - Key: Project
+          Value: !Ref ProjectName
+        - Key: Module
+          Value: !Ref ModuleName
+      PublicAccessBlockConfiguration:
+        BlockPublicPolicy: true
+        BlockPublicAcls: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
