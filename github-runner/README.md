@@ -6,15 +6,15 @@ This directory holds a single Cloudformation template to set up the following
 * S3 bucket containing the exercise's data to be ingested and transformed
 
 ## Setup
-1. [Create a Github Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with the Repo Scope. This will be used to generate a token to register a GithubRunner.
+1. Clone this repository
+2. [Create a Github Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with the Repo Scope. This will be used to generate a token to register a GithubRunner.
 ![github-repo-scope](./assets/github-repo-scope.png)
-   
-2. To reduce clashing with other AWS credentials, the bootstrap script uses an AWS_PROFILE set to `data-derp`. An AWS profile named `data-derp` with valid credentials to your AWS account must exist. For those expected to assume a role (within the same account), there is a helper function:
+3. Set up your AWS CLI and authenticate to your AWS account and store those credentials in a profile called `data-derp` NOTE: to reduce clashing with other AWS credentials, the bootstrap script uses an AWS_PROFILE called `data-derp`.
+5. OPTIONAL: Switch your role.  For those expected to assume a role (within the same account), there is a helper function:
 ```bash
 ./switch-role -b <starting-role> -t <target-role>
 ```
-   
-3. Create the Stack
+4. Create the Stack. 
 ```bash
 ./aws-deps -p your-project-name -m your-team-name -u your-github-username
 ```
