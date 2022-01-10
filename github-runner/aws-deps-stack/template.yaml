@@ -701,64 +701,64 @@ Resources:
                   - "iam:GetServiceLinkedRoleDeletionStatus"
                 Resource:
                   - "*"
-  Bucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      AccessControl: "Private"
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: "aws:kms"
-      BucketName: !Sub "${ProjectName}-${ModuleName}-terraform-state"
-      Tags:
-        - Key: Project
-          Value: !Ref ProjectName
-        - Key: Module
-          Value: !Ref ModuleName
-      VersioningConfiguration:
-        Status: "Enabled"
-      PublicAccessBlockConfiguration:
-        BlockPublicPolicy: true
-        BlockPublicAcls: true
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
-  Table:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      ProvisionedThroughput:
-        ReadCapacityUnits: 5
-        WriteCapacityUnits: 5
-      AttributeDefinitions:
-        - AttributeName: "LockID"
-          AttributeType: "S"
-      KeySchema:
-        - AttributeName: "LockID"
-          KeyType: "HASH"
-      TableName: !Sub "${ProjectName}-${ModuleName}-terraform-lock"
-      Tags:
-        - Key: Project
-          Value: !Ref ProjectName
-        - Key: Module
-          Value: !Ref ModuleName
-  DataSourceBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      AccessControl: "Private"
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: "aws:kms"
-      BucketName: !Sub "${ProjectName}-${ModuleName}-data-source"
-      Tags:
-        - Key: Project
-          Value: !Ref ProjectName
-      VersioningConfiguration:
-        Status: "Enabled"
-      PublicAccessBlockConfiguration:
-        BlockPublicPolicy: true
-        BlockPublicAcls: true
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
+#  Bucket:
+#    Type: AWS::S3::Bucket
+#    Properties:
+#      AccessControl: "Private"
+#      BucketEncryption:
+#        ServerSideEncryptionConfiguration:
+#          - ServerSideEncryptionByDefault:
+#              SSEAlgorithm: "aws:kms"
+#      BucketName: !Sub "${ProjectName}-${ModuleName}-terraform-state"
+#      Tags:
+#        - Key: Project
+#          Value: !Ref ProjectName
+#        - Key: Module
+#          Value: !Ref ModuleName
+#      VersioningConfiguration:
+#        Status: "Enabled"
+#      PublicAccessBlockConfiguration:
+#        BlockPublicPolicy: true
+#        BlockPublicAcls: true
+#        IgnorePublicAcls: true
+#        RestrictPublicBuckets: true
+#  Table:
+#    Type: AWS::DynamoDB::Table
+#    Properties:
+#      ProvisionedThroughput:
+#        ReadCapacityUnits: 5
+#        WriteCapacityUnits: 5
+#      AttributeDefinitions:
+#        - AttributeName: "LockID"
+#          AttributeType: "S"
+#      KeySchema:
+#        - AttributeName: "LockID"
+#          KeyType: "HASH"
+#      TableName: !Sub "${ProjectName}-${ModuleName}-terraform-lock"
+#      Tags:
+#        - Key: Project
+#          Value: !Ref ProjectName
+#        - Key: Module
+#          Value: !Ref ModuleName
+#  DataSourceBucket:
+#    Type: AWS::S3::Bucket
+#    Properties:
+#      AccessControl: "Private"
+#      BucketEncryption:
+#        ServerSideEncryptionConfiguration:
+#          - ServerSideEncryptionByDefault:
+#              SSEAlgorithm: "aws:kms"
+#      BucketName: !Sub "${ProjectName}-${ModuleName}-data-source"
+#      Tags:
+#        - Key: Project
+#          Value: !Ref ProjectName
+#      VersioningConfiguration:
+#        Status: "Enabled"
+#      PublicAccessBlockConfiguration:
+#        BlockPublicPolicy: true
+#        BlockPublicAcls: true
+#        IgnorePublicAcls: true
+#        RestrictPublicBuckets: true
 #  SparkUiHistoryServerInstance:
 #    Type: AWS::EC2::Instance
 #    Properties:

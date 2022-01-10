@@ -27,15 +27,15 @@ if [ -z "${project}" ] || [ -z "${module}" ] || [ -z "${githubuser}" ]; then
     usage
 fi
 
-./aws-deps-stack/create-stack.sh "${project}" "${module}" "${githubuser}"
+${script_dir}/aws-deps-stack/create-stack.sh "${project}" "${module}" "${githubuser}"
 echo "Waiting for 120 seconds for the stack to come up"
 sleep 120
 
-mkdir -p ${script_dir}/tmp
-curl -o ${script_dir}/tmp/EmissionsByCountry.csv https://raw.githubusercontent.com/data-derp/exercise-co2-vs-temperature/master/data-ingestion/input-data/EmissionsByCountry.csv
-curl -o ${script_dir}/tmp/GlobalTemperatures.csv https://raw.githubusercontent.com/data-derp/exercise-co2-vs-temperature/master/data-ingestion/input-data/GlobalTemperatures.csv
-curl -o ${script_dir}/tmp/TemperaturesByCountry.csv https://raw.githubusercontent.com/data-derp/exercise-co2-vs-temperature/master/data-ingestion/input-data/TemperaturesByCountry.csv
-AWS_PROFILE=data-derp aws s3 cp "${script_dir}/tmp/EmissionsByCountry.csv" "s3://${project}-${module}-data-source/EmissionsByCountry.csv"
-AWS_PROFILE=data-derp aws s3 cp "${script_dir}/tmp/TemperaturesByCountry.csv" "s3://${project}-${module}-data-source/TemperaturesByCountry.csv"
-AWS_PROFILE=data-derp aws s3 cp "${script_dir}/tmp/GlobalTemperatures.csv" "s3://${project}-${module}-data-source/GlobalTemperatures.csv"
-rm -rf ${script_dir}/tmp
+#mkdir -p ${script_dir}/tmp
+#curl -o ${script_dir}/tmp/EmissionsByCountry.csv https://raw.githubusercontent.com/data-derp/exercise-co2-vs-temperature/master/data-ingestion/input-data/EmissionsByCountry.csv
+#curl -o ${script_dir}/tmp/GlobalTemperatures.csv https://raw.githubusercontent.com/data-derp/exercise-co2-vs-temperature/master/data-ingestion/input-data/GlobalTemperatures.csv
+#curl -o ${script_dir}/tmp/TemperaturesByCountry.csv https://raw.githubusercontent.com/data-derp/exercise-co2-vs-temperature/master/data-ingestion/input-data/TemperaturesByCountry.csv
+#AWS_PROFILE=data-derp aws s3 cp "${script_dir}/tmp/EmissionsByCountry.csv" "s3://${project}-${module}-data-source/EmissionsByCountry.csv"
+#AWS_PROFILE=data-derp aws s3 cp "${script_dir}/tmp/TemperaturesByCountry.csv" "s3://${project}-${module}-data-source/TemperaturesByCountry.csv"
+#AWS_PROFILE=data-derp aws s3 cp "${script_dir}/tmp/GlobalTemperatures.csv" "s3://${project}-${module}-data-source/GlobalTemperatures.csv"
+#rm -rf ${script_dir}/tmp
